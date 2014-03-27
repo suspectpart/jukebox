@@ -1,0 +1,85 @@
+#File /etc/apache2/conf.d/jukebox
+
+#050120 olly
+#
+<virtualHost _default_:*>
+#
+DocumentRoot /opt/jukebox/www
+#
+ErrorLog /var/log/apache2/error.log
+LogLevel warn
+CustomLog /var/log/apache2/access.log combined
+#
+<Directory /opt/jukebox/www/>
+  Options Indexes Includes FollowSymLinks MultiViews
+  AllowOverride None
+  Order allow,deny
+  Allow from all
+</Directory>
+#
+AliasMatch ^/apache2-default/manual(?:/(?:de|en|es|fr|ja|ko|ru))?(/.*)?$ "/usr/share/doc/apache2-doc/manual/$1"
+AliasMatch ^/manual(?:/(?:de|en|es|fr|ja|ko|ru))?(/.*)?$ "/usr/share/doc/apache2-doc/manual/$1"
+<Directory "/usr/share/doc/apache2-doc/manual/">
+  Options Indexes
+  AllowOverride None
+  Order deny,allow
+  Deny from all
+  Allow from  127.0.0.0/255.0.0.0 ::1/128
+  Allow from  192.0.0.0/255.0.0.0 ::1/128
+#
+  <Files *.html>
+      SetHandler type-map
+  </Files>
+#
+  SetEnvIf Request_URI ^/manual/(de|en|es|fr|ja|ko|ru)/ prefer-language=$1
+  RedirectMatch 301 ^/manual(?:/(de|en|es|fr|ja|ko|ru)){2,}(/.*)?$ /manual/$1$2
+</Directory>
+#
+Alias /docs/ "/usr/share/doc/"
+<Directory "/usr/share/doc/">
+  Options Indexes MultiViews SymLinksIfOwnerMatch
+  AllowOverride None
+  Order allow,deny
+  Allow from all
+</Directory>
+#
+Alias /mp3/ "/opt/jukebox/data/mp3/"
+<Directory "/opt/jukebox/data/mp3/">
+  Options Indexes MultiViews SymLinksIfOwnerMatch
+  AllowOverride None
+  Order allow,deny
+  Allow from all
+</Directory>
+#
+Alias /ausgabe/ "/opt/jukebox/data/ausgabe/"
+<Directory "/opt/jukebox/data/ausgabe/">
+  Options Indexes MultiViews SymLinksIfOwnerMatch
+  AllowOverride None
+  Order allow,deny
+  Allow from all
+</Directory>
+#
+ScriptAlias /cgi-bin/ "/opt/jukebox/cgi-bin/"
+<Directory "/opt/jukebox/cgi-bin/">
+  AllowOverride None
+  Options ExecCGI
+  Order allow,deny
+  Allow from all
+</Directory>
+#
+Alias /endlosband/ "/opt/endlosband/"
+<Directory "/opt/endlosband/">
+  Options Indexes MultiViews SymLinksIfOwnerMatch
+  AllowOverride None
+  Order allow,deny
+  Allow from all
+#
+  # Dokumente in endlosband immer sofort neu laden:
+  ExpiresActive On
+  ExpiresDefault now
+</Directory>
+#
+Alias /phpmyadmin/ "/usr/share/phpmyadmin/"
+#
+</virtualHost>
+
