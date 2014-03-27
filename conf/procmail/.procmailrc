@@ -1,0 +1,29 @@
+#/home/jukebox/.procmailrc
+
+ORGMAIL=${HOME}/Maildir/
+DEFAULT=${ORGMAIL}
+MAILDIR=$HOME/Mail
+LOGFILE=$MAILDIR/from
+PATH=/bin:/usr/bin:/usr/bin
+# VERBOSE=on
+# LOG=test123
+
+#
+# notify from calendar:
+#
+
+:0 c
+* ^X-Mailer: WebCalendar
+|/opt/jukebox/bin/mail-agent.pl
+
+:0
+* ^X-Mailer: WebCalendar
+#$HOME/Mail/mail-agent
+$MAILDIR/mail-agent
+
+##:0
+##/dev/null
+
+:0
+| /usr/local/bin/maildir $ORGMAIL
+
