@@ -1,0 +1,23 @@
+#/etc/sudoers.d/jukebox
+jukebox ALL = NOPASSWD:/bin/chown www-data.www-data /data/mp3/*,\
+    NOPASSWD:/bin/chown jukebox /data/mp3/*,\
+    NOPASSWD:/bin/chmod 666 /data/mp3/*,\
+    NOPASSWD:/usr/local/sbin/svc * checkinputstream,\
+    NOPASSWD:/usr/bin/sv *,\
+    NOPASSWD:/bin/chmod 666 /var/service/checkinputstream/env/STREAMURL
+
+www-data ALL = NOPASSWD:/home/jukebox/bin/aufnahme_view.sh,\
+	NOPASSWD:/usr/bin/sv *,\
+	NOPASSWD:/usr/local/sbin/svstat *,\
+	NOPASSWD:/usr/local/sbin/svc *,\
+	NOPASSWD:/bin/chmod 666 /var/service/checkinputstream/env/STREAMURL,\
+	NOPASSWD:/bin/chmod 666 /var/service/podcastget/env/*,\
+	NOPASSWD:/usr/bin/touch /var/service/podcastget/env/*,\
+	NOPASSWD:/bin/chmod 666 /var/service/rum-player/env/*,\
+	NOPASSWD:/usr/bin/touch /var/service/rum-player/env/*,\
+	NOPASSWD:/bin/chmod 666 /data/temp/*,\
+	NOPASSWD:/usr/bin/touch /data/temp/*,\
+	NOPASSWD:/bin/rm -f /data/temp/*,\
+	NOPASSWD:/bin/rm -f /var/service/rum-player/env/*,\
+	(jukebox) NOPASSWD:/opt/jukebox/bin/update-mixplay *
+
