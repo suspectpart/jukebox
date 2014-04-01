@@ -1,0 +1,12 @@
+407c407
+< memory_limit = 128M
+---
+> memory_limit = 16M
+674c674
+< post_max_size = 8M
+---
+> post_max_size = 200M
+802c802
+< upload_max_filesize = 2M
+---
+> upload_max_filesize = 120M
