@@ -26,48 +26,48 @@ in `/etc/default/rcS` eintragen:
 
 VIM einrichten (optional)
 -----
-`sudo apt-get install vim`
-`sudo update-alternatives --config editor`
+`sudo apt-get install vim`  
+`sudo update-alternatives --config editor`  
 
 
 User Jukebox anlegen
 ====================
-`sudo mkdir /opt/jukebox`
-`sudo useradd -Gaudio -d /opt/jukebox jukebox`
-`sudo chown jukebox /opt/jukebox`
-`sudo chown jukebox /opt/jukebox`
-`sudo ln -s /opt/jukebox /home/jukebox`
-#`sudo mkdir /opt/jukebox_install`
+`sudo mkdir /opt/jukebox`  
+`sudo useradd -Gaudio -d /opt/jukebox jukebox`  
+`sudo chown jukebox /opt/jukebox`  
+`sudo chown jukebox /opt/jukebox`  
+`sudo ln -s /opt/jukebox /home/jukebox`  
+\#`sudo mkdir /opt/jukebox_install`  
 
 Git-Repo klonen
 ===============
 
-`sudo apt-get install git`
+`sudo apt-get install git`  
 `git clone https://github.com/suspectpart/jukebox``
 
 ALSA installieren
 =================
-`sudo apt-get install alsaplayer-alsa alsaplayer-text alsa-utils`
+`sudo apt-get install alsaplayer-alsa alsaplayer-text alsa-utils`  
 `sudo cp -i jukebox/conf/asound/asound.conf /etc/`
 
-Test mit:
+Test
 -----
 `alsaplayer -i text -d stdout -q http://streaming.fueralle.org:8000/`
 
 Sound-Hardware anzeigen:
 -----
-`cat /proc/asound/cards`
-`cat /proc/asound/pcm`
-`aplay -l`
+`cat /proc/asound/cards`  
+`cat /proc/asound/pcm`  
+`aplay -l`  
 
 
 Jukebox-Pakete installieren
 ===========================
 
-`sudo apt-get install php5-cli php5-common php-pear php-html-common php5-mysql`
-`sudo dpkg -i jukebox/packages/neingeist/php-html-progress_1.2.6-1_all.deb`
+`sudo apt-get install php5-cli php5-common php-pear php-html-common php5-mysql`  
+`sudo dpkg -i jukebox/packages/neingeist/php-html-progress_1.2.6-1_all.deb`  
 
-`sudo apt-get install php5-cli php5-common php-pear php-html-common`
+`sudo apt-get install php5-cli php5-common php-pear php-html-common`  
 `sudo dpkg -i jukebox/packages/neingeist/mixplayd/mixplayd_0.60-2+jukebox_i386.deb`
 
 ''contrib''-Pakete hinzufügen:
@@ -78,24 +78,24 @@ Paket `liveice` herunterladen und installieren:
 -----
 `wget http://archive.debian.org/debian/pool/contrib/l/liveice/liveice_1.0-3_i386.deb && sudo dpkg -i liveice_1.0-3_i386.deb`
 
-\#`sudo apt-get install libjack0 libmp3lame0 libtwolame0`
-\#`sudo dpkg -i jukebox/packages/neingeist/darkice_0.19-1+jukebox_i386.deb`
+\#`sudo apt-get install libjack0 libmp3lame0 libtwolame0`  
+\#`sudo dpkg -i jukebox/packages/neingeist/darkice_0.19-1+jukebox_i386.deb`  
 `sudo apt-get install darkice libmp3lame0`
 
 
 Jukebox-Repository
 ==================
-`sudo apt-get install subversion`
+`sudo apt-get install subversion`  
 `cd /opt && sudo svn co svn://tools.janguo.de/jukebox`
 
 `sudo cp -vi jukebox/conf/sudo/jukebox /etc/sudoers.d`
 
 Apache Webserver
 ================
-`sudo cp -vi jukebox/conf/apache/jukebox /etc/apache2/conf.d/`
-`sudo ln -s /etc/apache2/mods-available/expires.load /etc/apache2/mods-enabled/`
+`sudo cp -vi jukebox/conf/apache/jukebox /etc/apache2/conf.d/`  
+`sudo ln -s /etc/apache2/mods-available/expires.load /etc/apache2/mods-enabled/`  
 
-`sudo patch /etc/php5/cli/php.ini <jukebox/config/php/cli/php.ini.patch`
+`sudo patch /etc/php5/cli/php.ini <jukebox/config/php/cli/php.ini.patch`  
 `sudo patch /etc/php5/apache2/php.ini <jukebox/conf/php/apache2/php.ini.patch`
 
 `sudo service apache2 restart`
@@ -103,33 +103,34 @@ Apache Webserver
 MySQL-Datenbanken
 =================
 `sudo apt-get install mysql-client mysql-server`
+
 Root-Passwort festlegen
 
 Datenbanken und MySQL-User anlegen
 -----
-mysql -u root -p
-Enter password: 
+mysql -u root -p  
+Enter password:  
 
-CREATE DATABASE radionet;
-GRANT ALL PRIVILEGES ON *.* TO radio@localhost IDENTIFIED BY 'radio' WITH GRANT OPTION;
-CREATE DATABASE intranet;
-GRANT ALL PRIVILEGES ON *.* TO webcalendar@localhost IDENTIFIED BY 'webcal01' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
-QUIT;
+CREATE DATABASE radionet;  
+GRANT ALL PRIVILEGES ON *.* TO radio@localhost IDENTIFIED BY 'radio' WITH GRANT OPTION;  
+CREATE DATABASE intranet;  
+GRANT ALL PRIVILEGES ON *.* TO webcalendar@localhost IDENTIFIED BY 'webcal01' WITH GRANT OPTION;  
+FLUSH PRIVILEGES;  
+QUIT;  
 Bye
 
 Datenbanken herunterladen:
 -----
-`ftp -p ftp.bermudafunk.org`
-Name:
-Password:
-`get intranet.sql`
+`ftp -p ftp.bermudafunk.org`  
+Name:  
+Password:  
+`get intranet.sql`  
 `get radionet.sql`
 
 Datenbanken einlesen
 -----
-mysql -u root -p intranet <intranet.sql
-mysql -u root -p radionet <radionet.sql
+mysql -u root -p intranet <intranet.sql  
+mysql -u root -p radionet <radionet.sql  
 
 User `jukebox` anlegen
 -----
@@ -149,13 +150,13 @@ PmWiki
 
 WebCalendar
 ===========
-Download von [http://www.k5n.us/webcalendar.php?topic=Download]
+Download von [http://www.k5n.us/webcalendar.php?topic=Download]  
 `wget https://sourceforge.net/projects/webcalendar/files/webcalendar%201.2/1.2.7/WebCalendar-1.2.7.tar.gz/download -O WebCalendar-1.2.7.tar.gz`
 
-`sudo -u jukebox tar -xzf WebCalendar-1.2.7.tar.gz --directory /opt/jukebox/www/`
-`sudo rm /opt/jukebox/www/webcalendar`
-`sudo -u jukebox ln -s /opt/jukebox/www/WebCalendar-1.2.7/ /opt/jukebox/www/webcalendar`
-`sudo chown -R www-data /opt/jukebox/www/webcalendar`
+`sudo -u jukebox tar -xzf WebCalendar-1.2.7.tar.gz --directory /opt/jukebox/www/`  
+`sudo rm /opt/jukebox/www/webcalendar`  
+`sudo -u jukebox ln -s /opt/jukebox/www/WebCalendar-1.2.7/ /opt/jukebox/www/webcalendar`  
+`sudo chown -R www-data /opt/jukebox/www/webcalendar`  
 
 WebCalendar konfigurieren
 -----
@@ -181,7 +182,7 @@ WebCalendar konfigurieren
 * Save Settings
 
 # Jukebox-Crontab:
-`sudo -u jukebox crontab -e`
+`sudo -u jukebox crontab -e`  
 `* * * * * cd /opt/jukebox/www/webcalendar/tools/ && php send_reminders.php`
 
 PEAR
