@@ -2,11 +2,11 @@ Debian-Installation
 ===================
 Debian 7.4:
 
-Rechnername: jukebox
-Domain: bermudafunk.org
-Root-PW: <leer>	(-> sudo wird automatisch installiert)
-Ersten Benutzer einrichten (Admin per Sudo)
-Partitionierung: "geführt", verschiedene Partitionen für /var, /home usw.
+* Rechnername: jukebox
+* Domain: bermudafunk.org
+* Root-PW: leer	(-> sudo wird automatisch installiert)
+* Ersten Benutzer einrichten (Admin per Sudo)
+* Partitionierung: "geführt", verschiedene Partitionen für /var, /home usw.
 
 Ansonsten: Standard-Einstellung
 
@@ -16,14 +16,16 @@ Software-Auswahl (mit tasksel):
 * SSH server
 * Standard-Systemwerkzeuge
 
-Login als <erster Benutzer>
+System-Start, Login
+-----
 
-#/tmp-Verzeichnis nicht löschen und beschädigte Dateisysteme beim Booten automatisch Reparieren:
-# in `/etc/default/rcS` eintragen:
+* /tmp-Verzeichnis nicht löschen und beschädigte Dateisysteme beim Booten automatisch Reparieren:
+in `/etc/default/rcS` eintragen:
 `TMPTIME=-1`
 `FSCKFIX=yes`
 
-# VIM einrichten (optional)
+VIM einrichten (optional)
+-----
 `sudo apt-get install vim`
 `sudo update-alternatives --config editor`
 
@@ -48,10 +50,12 @@ ALSA installieren
 `sudo apt-get install alsaplayer-alsa alsaplayer-text alsa-utils`
 `sudo cp -i jukebox/conf/asound/asound.conf /etc/`
 
-# Test mit:
+Test mit:
+-----
 `alsaplayer -i text -d stdout -q http://streaming.fueralle.org:8000/`
 
-# Sound-Hardware anzeigen:
+Sound-Hardware anzeigen:
+-----
 `cat /proc/asound/cards`
 `cat /proc/asound/pcm`
 `aplay -l`
@@ -66,14 +70,16 @@ Jukebox-Pakete installieren
 `sudo apt-get install php5-cli php5-common php-pear php-html-common`
 `sudo dpkg -i jukebox/packages/neingeist/mixplayd/mixplayd_0.60-2+jukebox_i386.deb`
 
-#''contrib''-Pakete hinzufügen:
+''contrib''-Pakete hinzufügen:
+-----
 `sudo sed -i "s/main/main contrib/" /etc/apt/sources.list && sudo apt-get update`
 
-# Paket `liveice` herunterladen und installieren:
+Paket `liveice` herunterladen und installieren:
+-----
 `wget http://archive.debian.org/debian/pool/contrib/l/liveice/liveice_1.0-3_i386.deb && sudo dpkg -i liveice_1.0-3_i386.deb`
 
-#`sudo apt-get install libjack0 libmp3lame0 libtwolame0`
-#`sudo dpkg -i jukebox/packages/neingeist/darkice_0.19-1+jukebox_i386.deb`
+\#`sudo apt-get install libjack0 libmp3lame0 libtwolame0`
+\#`sudo dpkg -i jukebox/packages/neingeist/darkice_0.19-1+jukebox_i386.deb`
 `sudo apt-get install darkice libmp3lame0`
 
 
@@ -94,16 +100,13 @@ Apache Webserver
 
 `sudo service apache2 restart`
 
-PMWiki
-======
-
-
 MySQL-Datenbanken
 =================
 `sudo apt-get install mysql-client mysql-server`
 Root-Passwort festlegen
 
-#Datenbanken und MySQL-User anlegen:
+Datenbanken und MySQL-User anlegen
+-----
 mysql -u root -p
 Enter password: 
 
@@ -115,18 +118,21 @@ FLUSH PRIVILEGES;
 QUIT;
 Bye
 
-# Datenbanken herunterladen:
+Datenbanken herunterladen:
+-----
 `ftp -p ftp.bermudafunk.org`
 Name:
 Password:
 `get intranet.sql`
 `get radionet.sql`
 
-# Datenbanken einlesen
+Datenbanken einlesen
+-----
 mysql -u root -p intranet <intranet.sql
 mysql -u root -p radionet <radionet.sql
 
-#User `jukebox` anlegen
+User `jukebox` anlegen
+-----
 ToDo
 
 Procmailrc
@@ -139,7 +145,7 @@ sudo apt-get install ntp
 
 PmWiki
 ======
-sudo chown -R www-data /opt/jukebox/www/pmwiki
+`sudo chown -R www-data /opt/jukebox/www/pmwiki`
 
 WebCalendar
 ===========
@@ -151,7 +157,8 @@ Download von [http://www.k5n.us/webcalendar.php?topic=Download]
 `sudo -u jukebox ln -s /opt/jukebox/www/WebCalendar-1.2.7/ /opt/jukebox/www/webcalendar`
 `sudo chown -R www-data /opt/jukebox/www/webcalendar`
 
-#WebCalendar konfigurieren
+WebCalendar konfigurieren
+-----
 * [http://jukebox] -> Sendeplan im Browser aufrufen
 * Admin-Passwort setzen
 * Login mit Admin-Passwort
