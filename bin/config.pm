@@ -27,3 +27,5 @@ $mysql_db_user="radio";
 $mysql_db_password="radio";
 $mysql_db_name="radionet";
 
+$rumstream_format="mp3";
+
