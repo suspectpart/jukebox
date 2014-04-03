@@ -29,7 +29,7 @@ VIM einrichten (optional)
 `sudo apt-get install vim`  
 `sudo update-alternatives --config editor`  
 
-Automatische Updates
+Automatische Updates (optional)
 --------------------
 `sudo apt-get install cron-apt`
 
@@ -56,6 +56,10 @@ ALSA installieren
 
 Alsa-lib Patch
 --------------
+* Paket installieren:
+`sudo dpkg -i sudo dpkg -i jukebox/packages/wheezy/libasound2_1.0.25-4_i386.deb`
+
+* Oder: Paket selbst patchen und erzeugen:
 `sudo apt-get install dpkg-dev autotools-dev debhelper dh-autoreconf doxygen python-dev` (>600MB Download!)
 `apt-get source alsa-lib`
 `cd alsa-lib-1.0.25/`
