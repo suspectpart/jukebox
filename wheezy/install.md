@@ -29,6 +29,10 @@ VIM einrichten (optional)
 `sudo apt-get install vim`  
 `sudo update-alternatives --config editor`  
 
+Automatische Updates
+--------------------
+`sudo apt-get install cron-apt`
+
 
 User Jukebox anlegen
 ====================
@@ -50,9 +54,19 @@ ALSA installieren
 `sudo apt-get install alsaplayer-alsa alsaplayer-text alsa-utils`  
 `sudo cp -i jukebox/conf/asound/asound.conf /etc/`
 
+Alsa-lib Patch
+--------------
+`sudo apt-get install dpkg-dev autotools-dev debhelper dh-autoreconf doxygen python-dev` (>600MB Download!)
+`apt-get source alsa-lib`
+`cd alsa-lib-1.0.25/`
+`patch -p1 </opt/jukebox/src/alsa-lib-patch_pcm_stdout/alsalib-stdout-file-1.0.23.diff`
+`dpkg-source commit`
+`dpkg-buildpackage`
+`sudo dpkg -i ../libasound2_1.0.25-4_i386.deb`
+
 Test
 -----
-`alsaplayer -i text -d stdout -q http://streaming.fueralle.org:8000/`
+`alsaplayer -i text -d stdout -q http://streaming.fueralle.org:8000/bermudafunk.ogg` (Schreibt auf die Konsole)
 
 Sound-Hardware anzeigen:
 -----
@@ -158,6 +172,8 @@ Download von [http://www.k5n.us/webcalendar.php?topic=Download]
 `sudo -u jukebox ln -s /opt/jukebox/www/WebCalendar-1.2.7/ /opt/jukebox/www/webcalendar`  
 `sudo chown -R www-data /opt/jukebox/www/webcalendar`  
 
+`sudo -u jukebox cp -vi jukebox/bin/config.pm /opt/jukebox/bin/`
+
 WebCalendar konfigurieren
 -----
 * [http://jukebox] -> Sendeplan im Browser aufrufen
@@ -181,9 +197,12 @@ WebCalendar konfigurieren
   * Environment:	Production
 * Save Settings
 
-# Jukebox-Crontab:
+Jukebox-Crontab
+------
 `sudo -u jukebox crontab -e`  
 `* * * * * cd /opt/jukebox/www/webcalendar/tools/ && php send_reminders.php`
+
+
 
 PEAR
 ====
