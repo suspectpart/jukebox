@@ -57,15 +57,15 @@ ALSA installieren
 Alsa-lib Patch
 --------------
 * Paket installieren:
-`sudo dpkg -i sudo dpkg -i jukebox/packages/wheezy/libasound2_1.0.25-4_i386.deb`
+`sudo dpkg -i jukebox/packages/wheezy/libasound2_1.0.25-4_i386.deb`
 
 * Oder: Paket selbst patchen und erzeugen:
-`sudo apt-get install dpkg-dev autotools-dev debhelper dh-autoreconf doxygen python-dev` (>600MB Download!)
-`apt-get source alsa-lib`
-`cd alsa-lib-1.0.25/`
-`patch -p1 </opt/jukebox/src/alsa-lib-patch_pcm_stdout/alsalib-stdout-file-1.0.23.diff`
-`dpkg-source commit`
-`dpkg-buildpackage`
+`sudo apt-get install dpkg-dev autotools-dev debhelper dh-autoreconf doxygen python-dev` (>600MB Download!)  
+`apt-get source alsa-lib`  
+`cd alsa-lib-1.0.25/`  
+`patch -p1 </opt/jukebox/src/alsa-lib-patch_pcm_stdout/alsalib-stdout-file-1.0.23.diff`  
+`dpkg-source commit`  
+`dpkg-buildpackage`  
 `sudo dpkg -i ../libasound2_1.0.25-4_i386.deb`
 
 Test
