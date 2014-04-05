@@ -82,10 +82,9 @@ Sound-Hardware anzeigen:
 Jukebox-Pakete installieren
 ===========================
 
-`sudo apt-get install php5-cli php5-common php-pear php-html-common php5-mysql`  
+`sudo apt-get install php5-cli php5-common php-pear php-html-common php5-mysql streamripper runit`  
 `sudo dpkg -i jukebox/packages/neingeist/php-html-progress_1.2.6-1_all.deb`  
 
-`sudo apt-get install php5-cli php5-common php-pear php-html-common`  
 `sudo dpkg -i jukebox/packages/neingeist/mixplayd/mixplayd_0.60-2+jukebox_i386.deb`
 
 ''contrib''-Pakete hinzufügen:
@@ -216,9 +215,4 @@ Live-Erkennung
 ==============
 ToDo
 
-ToDo
-====
-* Live-Erkennung
-* Binaries in ''/home/jukebox/bin/'' sind (teilweise) in ''mail-agent.pl'' hartkodiert, evtl. durch symbolische Links auf die Binaries in Debian-Paketen lösen (streamripper, mixplayd usw.).
-* Services [http://wiki.bermudafunk.de/doku.php/stream#einleitung]
 
