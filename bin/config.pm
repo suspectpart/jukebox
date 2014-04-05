@@ -18,7 +18,7 @@ $rumtmp = "/data/temp";
 $rumlog = "/data/log/mail-agent.log";             
 $rumstream = "http://jukebox:8000/ring";               # wo kommt unser Radiosignal her?
 $streamripper = "Streamripper_rips";                   # Unterverzeichnis in dem Streamripper speichert
-$streamripper_prog = "/usr/bin/streamripper"		# Streamripper-Binary
+$streamripper_prog = "/usr/bin/streamripper";		# Streamripper-Binary
 $poddir = "POD";                                       # Unterverzeichnis in dem Podget speichert
 $rumplayenv = "/var/service/rum-player/env";           # wo ist das Env vom Rum-Player?
 $rumplaypipe= "/data/temp/rum-player-cmd.pipe";        # Pipe zur Übergabe an den Rum-Player
@@ -30,3 +30,4 @@ $mysql_db_name="radionet";
 
 $rumstream_format="mp3";
 
+$runservices = "runit";	# oder "daemontools"
